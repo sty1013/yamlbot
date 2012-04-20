@@ -11,7 +11,7 @@
  *
  *******************************************************************************/
 
-1. Modify test_builder/build.xml.
+1. Modify test_builder/build.xml file.
     - Set eclipse-home's value.
 2. Export "kr.or.tyson.yamlbot" to eclipse-home's plugins folder.
 3. Modify context in "kr.or.tyson.yamlbot/test.script".

@@ -52,7 +52,7 @@ public class Activator extends AbstractUIPlugin {
          * javassist.CannotCompileException: by java.lang.LinkageError: loader
          * (instance of
          * org/eclipse/osgi/internal/baseadaptor/DefaultClassLoader): attempted
-         * duplicate class definition for name: "org/tizen/ide/test/AllTests"
+         * duplicate class definition for name: "kr/or/tyson/AllTests"
          */
         // new TestSpy(); // to call static initializer
     }

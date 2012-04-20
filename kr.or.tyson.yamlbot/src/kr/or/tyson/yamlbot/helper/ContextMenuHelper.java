@@ -89,7 +89,7 @@ public class ContextMenuHelper {
             menu.notifyListeners(SWT.Show, new Event());
             MenuItem[] items = menu.getItems();
             for (final MenuItem menuItem : items) {
-                System.out.println(menuItem.getText());
+//                System.out.println(menuItem.getText());
                 if (matcher.matches(menuItem)) {
                     return menuItem;
                 }

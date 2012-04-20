@@ -4,7 +4,7 @@
         <format property="today" pattern="yyyyMMddHHmmSS" />
     </tstamp>
 
-    <property name="eclipse-home" value="${HOME}/eclipse" />               <!-- set test eclipse path -->
+    <property name="eclipse-home" value="/home/tyson/eclipse" />               <!-- set test eclipse path -->
     <property name="plugin-name" value="kr.or.tyson.yamlbot" />                          <!-- set test plugin name -->
     <property name="test-preclassname" value="kr.or.tyson.yamlbot.TestSpy" />            <!-- class to load earlier than test class -->
     <property name="test-classname" value="kr.or.tyson.yamlbot.AllTests" />              <!-- set test class name -->

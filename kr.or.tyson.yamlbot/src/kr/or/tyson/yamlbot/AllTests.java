@@ -33,6 +33,7 @@ import org.eclipse.swtbot.swt.finder.junit.SWTBotJunit4ClassRunner;
 import org.eclipse.swtbot.swt.finder.utils.SWTBotPreferences;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -73,15 +74,15 @@ public class AllTests {
         SWTBot bot = null;
         for (String key : step.keySet()) {
             String line = step.get(key);
-            if ("(menu) &Project > &Build Project".equals(line))
-                System.out.println(line);
-
-            if ("(menu) Project > Build All".equals(line))
-                System.out.println(line);
-
-            if ("(tree) prj1 ---> Build Project".equals(line))
-                System.out.println(line);
-
+//            if ("(menu) &Project > &Build Project".equals(line))
+//                System.out.println(line);
+//
+//            if ("(menu) Project > Build All".equals(line))
+//                System.out.println(line);
+//
+//            if ("(tree) prj1 ---> Build Project".equals(line))
+//                System.out.println(line);
+//
             logger.info("----------------------------" + key + " - " + line
                     + "-----------------------------------");
             Command command = commandFactory.createCommand(parse(line));
@@ -110,6 +111,7 @@ public class AllTests {
         workbenchBot.sleep(SWTBotPreferences.TIMEOUT);
     }
     
+    @Ignore
     @Test
     public void executeTestMethods() throws NoSuchMethodException {
         List<TestSuite> suites = TestSpy.getTestFixture().getSuites();

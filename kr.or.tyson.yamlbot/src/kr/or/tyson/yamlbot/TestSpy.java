@@ -88,7 +88,7 @@ public class TestSpy {
                                                      // only adds the system
                                                      // classpath
             pool.appendClassPath(new LoaderClassPath(cl));
-            CtClass cc = pool.get("org.tizen.ide.swtbot.test.AllTests"); // must
+            CtClass cc = pool.get("kr.or.tyson.yamlbot.AllTests"); // must
                                                                          // be
                                                                          // string?!,
                                                                          // CtClass(compile-time

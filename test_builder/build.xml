@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="testsuite" default="run" basedir=".">
+    <tstamp>
+        <format property="today" pattern="yyyyMMddHHmmSS" />
+    </tstamp>
+
+    <property name="eclipse-home" value="${HOME}/eclipse" />               <!-- set test eclipse path -->
+    <property name="plugin-name" value="kr.or.tyson.yamlbot" />                          <!-- set test plugin name -->
+    <property name="test-preclassname" value="kr.or.tyson.yamlbot.TestSpy" />            <!-- class to load earlier than test class -->
+    <property name="test-classname" value="kr.or.tyson.yamlbot.AllTests" />              <!-- set test class name -->
+    <property name="playback-delay" value="30" />                                       <!-- slow down tests -->
+    <property name="library-file" value="${eclipse-home}/plugins/org.eclipse.swtbot.eclipse.junit4.headless_2.0.5.20111003_1754-3676ac8-dev-e36/library.xml" />
+    
+	<target name="suite">
+        <!-- copy required plugins -->
+        <copy todir="${eclipse-home}/plugins">
+            <fileset dir="plugins"/>
+        </copy>
+        <!-- javassist must be loaded first -->
+        <property name="jvmOption" value="-Xbootclasspath/p:${basedir}/lib/javassist.jar"></property>
+        <echo>Applying jvmOption... ${jvmOption}</echo>
+        <property name="temp-workspace" value="workspace-${today}"/>
+        <delete dir="${temp-workspace}" quiet="true"/>
+        <ant target="swtbot-test" antfile="${library-file}" dir="${eclipse-home}">
+            <property name="data-dir" value="${temp-workspace}"/>
+            <property name="plugin-name" value="${plugin-name}"/>
+            <property name="os" value="linux"/>
+            <property name="ws" value="gtk"/>
+            <property name="arch" value="x86"/>
+            <property name="preclassname" value="${test-preclassname}"/>
+            <property name="playback-delay" value="${playback-delay}"/>
+            <property name="classname" value="${test-classname}"/>
+            <property name="vmargs" value="-Xms128M -XX:MaxPermSize=512m -Xmx512M ${jvmOption}"/>
+        </ant>
+    </target>
+    <target name="cleanup" />
+    <target name="run" depends="suite,cleanup">
+    </target>
+</project>

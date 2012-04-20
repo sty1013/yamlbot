@@ -1,0 +1,63 @@
+# script for GUI Test
+#
+# No tab character
+#
+# test_cases
+#  test_no: <id> # must be unique
+---
+setUp:
+    - step: &closeWelcome
+        1: (view) Welcome ---> close
+    - step: &changePerspective
+        1: (menu) Window > Open Perspective > Other...
+        2: (shell) Open Perspective
+        3: (table) Plug-in Development
+        4: (button) OK
+
+
+suites:
+    # Test Suite 1 - Project Wizard
+    - name: Project Wizard
+      test_cases:
+        - test_no: PW_New_Project
+          description: Test whether project wizard works correctly
+          step:
+            1: (menu) File > New > Project...
+            2: (shell) New Project
+            3: (tree) Plug-in Development > Plug-in Project
+            4: (button) Next >
+            5: "(text) Project &name: ---> 'prj1'" # surround with " for escaping :
+            6: (button) Next >
+            7: (button) Finish
+
+    # Test Suite 2 - Editor
+    - name: Editor
+      test_cases:
+        - test_no: EDIT_Open_source_file
+          description: Test whether editor works correctly
+          step:
+            1: (view) Project Explorer
+            2: (tree) prj1 > src > prj1 >  Activator.java ---> dblclick
+
+    # Test Suite 3 - Project Wizard
+    - name: Build Test
+      test_cases:
+        - test_no: Build_Project
+          description : Build Project
+          step:
+            1: (view) Project Explorer
+            3: (tree) prj1 ---> Build Project
+
+        - test_no: Run_Project
+          description : Run Project to target
+          step:
+            1: (view) Project Explorer
+            2: (tree) prj1 ---> Run As > 1 Eclipse Application
+
+        - test_no: ERR_Snapshot
+          description: Error case to show snapshot
+          step:
+            1: (menu) File > New > Project...
+            2: (button) Finish
+
+

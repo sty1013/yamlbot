@@ -1,0 +1,54 @@
+Manifest-Version: 1.0
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Eclipse.org - SWTBot
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Name: SWTBot Headless JUnit4 Launch Plug-in (incubation)
+Bundle-SymbolicName: org.eclipse.swtbot.eclipse.junit4.headless;single
+ ton:=true
+Bundle-Version: 2.0.5.20111003_1754-3676ac8-dev-e36
+Export-Package: org.eclipse.swtbot.eclipse.junit4.headless
+Import-Package: junit.framework;version="4.5.0",org.apache.tools.ant,o
+ rg.apache.tools.ant.taskdefs.optional.junit,org.eclipse.core.runtime;
+ version="3.4.0",org.eclipse.equinox.app;version="1.0.0",org.eclipse.o
+ sgi.util;version="1.1.0",org.eclipse.swt.widgets,org.eclipse.ui,org.e
+ clipse.ui.testing,org.osgi.framework;version="1.4.0"
+Bundle-ManifestVersion: 2
+
+Name: JUNIT.XSL
+SHA1-Digest: n97JGSRgYrrlEAjH+mfh3a70J/4=
+
+Name: META-INF/eclipse.inf
+SHA1-Digest: 09gN05tobgS/MdtqyTNQhOhB73M=
+
+Name: library.xml
+SHA1-Digest: +JeuQZ4se8JHfnl/2w/6Z5B3jv4=
+
+Name: LICENSE.EPL
+SHA1-Digest: VsG0HiT596FfDuelVccChclhCk8=
+
+Name: src/org/eclipse/swtbot/eclipse/junit4/headless/UITestApplication
+ .java
+SHA1-Digest: yIixXANH5W1EdldXNxMqfrYEozM=
+
+Name: org/eclipse/swtbot/eclipse/junit4/headless/EclipseTestRunner$Tes
+ tFailedException.class
+SHA1-Digest: GBtxkLmNMpkdkUufnHcCeLAvzaw=
+
+Name: src/org/eclipse/swtbot/eclipse/junit4/headless/EclipseTestRunner
+ .java
+SHA1-Digest: 8DrkFR3dI/j0HQuzLy3QIRj/Xg0=
+
+Name: org/eclipse/swtbot/eclipse/junit4/headless/EclipseTestRunner.cla
+ ss
+SHA1-Digest: T15L9GBQStm35v97srtg2IlSLRw=
+
+Name: org/eclipse/swtbot/eclipse/junit4/headless/UITestApplication.cla
+ ss
+SHA1-Digest: VCnZYMSIlUKwGIirayEN7Z58GrU=
+
+Name: plugin.xml
+SHA1-Digest: 1BMUuvgnq2MTEN6MHRWlEloTZlY=
+
+Name: about.html
+SHA1-Digest: Co36Swn6pp1ftR7vCzQbZA9zoD8=
+

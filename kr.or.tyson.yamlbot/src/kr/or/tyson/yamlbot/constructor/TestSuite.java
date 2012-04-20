@@ -1,0 +1,37 @@
+/*******************************************************************************
+ * Copyright (c) 2012 Kangho Kim and Taeyoung Son.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Kangho Kim <kh5325@samsung.com>
+ * Taeyoung Son <taeyoung2.son@samsung.com>
+ *
+ *******************************************************************************/
+
+package kr.or.tyson.yamlbot.constructor;
+
+import java.util.List;
+
+public class TestSuite {
+    private String name;
+    private List<TestCase> test_cases;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<TestCase> getTest_cases() {
+        return test_cases;
+    }
+
+    public void setTest_cases(List<TestCase> test_cases) {
+        this.test_cases = test_cases;
+    }
+}

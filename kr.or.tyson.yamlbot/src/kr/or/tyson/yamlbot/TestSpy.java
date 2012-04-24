@@ -118,10 +118,13 @@ public class TestSpy {
                     cc.addMethod(mthd);
 
                     mthd.getMethodInfo().addAttribute(attr); // insert test
-                                                             // annotion for
+                                                             // annotationion for
                                                              // junit test
                 }
             }
+            
+            CtMethod cm = cc.getDeclaredMethod("executeTestMethods");
+            cc.removeMethod(cm);//insert ignore annotation
 
             for (CtMethod m : cc.getDeclaredMethods())
                 logger.info("Added @Test method - "

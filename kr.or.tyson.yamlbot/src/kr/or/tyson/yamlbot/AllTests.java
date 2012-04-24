@@ -33,7 +33,6 @@ import org.eclipse.swtbot.swt.finder.junit.SWTBotJunit4ClassRunner;
 import org.eclipse.swtbot.swt.finder.utils.SWTBotPreferences;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -111,7 +110,6 @@ public class AllTests {
         workbenchBot.sleep(SWTBotPreferences.TIMEOUT);
     }
     
-    @Ignore
     @Test
     public void executeTestMethods() throws NoSuchMethodException {
         List<TestSuite> suites = TestSpy.getTestFixture().getSuites();

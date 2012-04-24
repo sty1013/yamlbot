@@ -11,9 +11,28 @@
  *
  *******************************************************************************/
 
-1. Modify test_builder/build.xml file.
-    - Set eclipse-home's value.
+Execute using terminal
+======================
+1. Modify builder/build.xml file.
+    - Set eclipse-home's value to test target platform.
 2. Export "kr.or.tyson.yamlbot" to eclipse-home's plugins folder.
-3. Modify context in "kr.or.tyson.yamlbot/test.script".
-4. Copy "test_builder/plugins" to eclipse-home's plugins directory.
-6. Just execute "ant" in test_builder.
+3. Modify test script in "kr.or.tyson.yamlbot/test.script".
+4. Just execute "ant" in test_builder.
+
+
+Execute using eclipse
+=====================
+1. Execute eclipse.
+2. Import "kr.or.tyson.yamlbot" and "builder"
+3. If you run test using builder project's build.xml file, just run usnig ant build. If you run test using kr.or.tyson.yamlbot project, you should follow the below.
+	a. Copy plugins from builder/lib to test target platform.
+	b. Open Run > Run Configurations...
+	c. Create SWTBot Test job
+	d. Set Test page
+		- Project : kr.or.tyson.yamlbot
+		- test class : kr.or.tyson.yamlbot.AllTests
+		- Test runner : JUnit 4
+	e. Set Main page
+		- Run a product : test target platform's id
+	f. Close Run Configurations dialog
+	g. Run the test project using SWTBot Test

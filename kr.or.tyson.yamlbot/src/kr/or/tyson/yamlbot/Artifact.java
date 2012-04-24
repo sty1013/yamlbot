@@ -65,6 +65,10 @@ public enum Artifact {
                 targets = ActionToken.splitWithTrim(line,
                         Constant.MENU_SEPARATOR);
                 break;
+            case table:
+            	line = line.replace("\"", "");
+            	break;
+            	
             default:
                 targets = new String[] { line };
         }

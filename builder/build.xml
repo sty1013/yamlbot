@@ -4,17 +4,21 @@
         <format property="today" pattern="yyyyMMddHHmmSS" />
     </tstamp>
 
-    <property name="eclipse-home" value="/home/tyson/eclipse" />               <!-- set test eclipse path -->
+    <property name="eclipse-home" value="/home/tyson/eclipse" />                         <!-- set test eclipse path -->
+    <property name="yamlbot-home" value="/home/tyson/work/git/yamlbot" />                <!-- set yamlbot.git path -->
     <property name="plugin-name" value="kr.or.tyson.yamlbot" />                          <!-- set test plugin name -->
     <property name="test-preclassname" value="kr.or.tyson.yamlbot.TestSpy" />            <!-- class to load earlier than test class -->
     <property name="test-classname" value="kr.or.tyson.yamlbot.AllTests" />              <!-- set test class name -->
-    <property name="playback-delay" value="30" />                                       <!-- slow down tests -->
+    <property name="playback-delay" value="30" />                                        <!-- slow down tests -->
     <property name="library-file" value="${eclipse-home}/plugins/org.eclipse.swtbot.eclipse.junit4.headless_2.0.5.20111003_1754-3676ac8-dev-e36/library.xml" />
     
 	<target name="suite">
         <!-- copy required plugins -->
         <copy todir="${eclipse-home}/plugins">
-            <fileset dir="plugins"/>
+            <fileset dir="${yamlbot-home}/builder/plugins"/>
+        </copy>
+        <copy todir="${eclipse-home}">
+            <fileset file="${yamlbot-home}/builder/test.script"/>
         </copy>
         <!-- javassist must be loaded first -->
         <property name="jvmOption" value="-Xbootclasspath/p:${basedir}/lib/javassist.jar"></property>

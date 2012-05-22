@@ -14,7 +14,7 @@
 package kr.or.tyson.yamlbot;
 
 public enum Artifact {
-    button, view, menu, table, text, tree, shell;
+    button, view, menu, table, text, tree, shell, console, sleep;
 
     public enum Action {
         close, show, select, click, dblclick, dummy; // action for just getting
@@ -67,8 +67,6 @@ public enum Artifact {
                 break;
             case table:
             	line = line.replace("\"", "");
-            	break;
-            	
             default:
                 targets = new String[] { line };
         }

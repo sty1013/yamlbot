@@ -13,6 +13,8 @@
 
 package kr.or.tyson.yamlbot;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -68,9 +70,9 @@ public class TestSpy {
 
         InputStream is = null;
         try {
-            ClassLoader cl = TestSpy.class.getClassLoader();
-            is = cl.getResourceAsStream(Constant.SCRIPT_FILE); // read script
-                                                               // file.
+            logger.info("Test script file : "+Constant.SCRIPT_FILE);
+            is = new FileInputStream(Constant.SCRIPT_FILE); // read script
+                                                            // file.
 
             // Set test fixture
             Constructor constructor = new Constructor(TestFixture.class);
@@ -82,6 +84,7 @@ public class TestSpy {
             _fixture = (TestFixture) yaml.load(is);
 
             // Write @Test methods from test_cases in script
+            ClassLoader cl = TestSpy.class.getClassLoader();
             ClassPool pool = ClassPool.getDefault(); // The ClassPool returned
                                                      // by
                                                      // ClassPool.getDefault()

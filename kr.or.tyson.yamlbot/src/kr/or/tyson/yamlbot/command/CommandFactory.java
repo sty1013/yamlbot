@@ -52,11 +52,17 @@ public class CommandFactory {
                 command = new TextCommand(token.getTargets()[0], action);
                 break;
             case tree:
-                command = new TreeCommand(token.getTargets(), getAction(action,
-                        Action.select));
+                command = new TreeCommand(token.getTargets(), getAction(action, Action.select));
                 break;
             case shell:
                 command = new ShellCommand(token.getTargets()[0]);
+                break;
+            case console:
+                command = new ConsoleCommand(token.getTargets()[0], action);
+                break;
+            case sleep:
+                int value = Integer.parseInt(token.getTargets()[0]);
+                command = new SleepCommand(value, action);
                 break;
         }
 

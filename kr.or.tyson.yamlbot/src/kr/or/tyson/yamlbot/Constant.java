@@ -13,8 +13,10 @@
 
 package kr.or.tyson.yamlbot;
 
+import java.io.File;
+
 public class Constant {
-    public static final String SCRIPT_FILE = "test.script";
+    public static final String SCRIPT_FILE = System.getProperty("user.dir") + File.separator + "test.script";
 
     public static final String ACTION_INDICATOR = "--->";
     public static final String MENU_SEPARATOR = ">";

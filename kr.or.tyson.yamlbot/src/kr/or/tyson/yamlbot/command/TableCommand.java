@@ -38,11 +38,6 @@ public class TableCommand extends AbstractCommand {
         try {
             switch (action) {
                 case select:
-                    // FIXME:
-                    // hard coding for test.
-                    if ("Controlbar Template 1.0".equals(targets[0])) {
-                        targets[0] = "  " + targets[0];
-                    }
                     bot.table().select(targets);
                     break;
             }

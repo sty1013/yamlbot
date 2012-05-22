@@ -73,14 +73,6 @@ public class AllTests {
         SWTBot bot = null;
         for (String key : step.keySet()) {
             String line = step.get(key);
-//            if ("(menu) &Project > &Build Project".equals(line))
-//                System.out.println(line);
-//
-//            if ("(menu) Project > Build All".equals(line))
-//                System.out.println(line);
-//
-//            if ("(tree) prj1 ---> Build Project".equals(line))
-//                System.out.println(line);
 //
             logger.info("----------------------------" + key + " - " + line
                     + "-----------------------------------");

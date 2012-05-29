@@ -17,9 +17,12 @@
         <delete dir="${eclipse-home}/${test.script}" quiet="true"/>
         <delete dir="${eclipse-home}/plugins/${yamlbot.jar}" quiet="true"/>
         <delete dir="${plugin-path}/${yamlbot.jar}" quiet="true"/>
+        <delete dir="${plugin-path}/bin" quiet="true"/>
     </target>
 
     <target name="setup" depends="cleanup">
+	<mkdir dir="${plugin-path}/bin"/>
+
         <echo>Compile ${plugin-name}...</echo>
         <bx-javac />
         <echo>Make jar file...</echo>
@@ -33,6 +36,7 @@
             <fileset file="${test.script.path}/${test.script}" />
             <fileset file="${plugin-path}/${yamlbot.jar}" />
         </copy>
+
     </target>
 
     <target name="suite" depends="setup">
@@ -67,14 +71,18 @@
         <sequential>
             <javac
                 srcdir="@{src}"
-            	destdir="@{dest}"
+                destdir="@{dest}"
                 encoding="@{encoding}"
                 source="@{version}"
                 target="@{version}"
                 debug="@{debug}"
                 debuglevel="@{debuglevel}"
-            	includeantruntime="false"
+                includeantruntime="false"
             >
+                <classpath>
+                    <fileset dir="${eclipse-home}/plugins" />
+                    <fileset dir="${yamlbot.git}/builder/lib" />
+	            </classpath>
             </javac>
         </sequential>
     </macrodef>

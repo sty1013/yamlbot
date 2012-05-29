@@ -97,6 +97,10 @@ public class TestSpy {
                                                                          // CtClass(compile-time
                                                                          // class)
             ClassFile ccFile = cc.getClassFile();
+
+            CtMethod cm = cc.getDeclaredMethod("executeTestMethods");
+            cc.removeMethod(cm);//insert ignore annotation
+
             ConstPool constpool = ccFile.getConstPool();
             AnnotationsAttribute attr = new AnnotationsAttribute(constpool,
                     AnnotationsAttribute.visibleTag);
@@ -126,9 +130,6 @@ public class TestSpy {
                 }
             }
             
-            CtMethod cm = cc.getDeclaredMethod("executeTestMethods");
-            cc.removeMethod(cm);//insert ignore annotation
-
             for (CtMethod m : cc.getDeclaredMethods())
                 logger.info("Added @Test method - "
                         + Arrays.toString(m.getAnnotations()) + " / "

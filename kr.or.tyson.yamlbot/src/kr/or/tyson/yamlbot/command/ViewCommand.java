@@ -38,24 +38,19 @@ public class ViewCommand extends AbstractCommand {
 
         SWTBot swtBot = null;
         // bot.viewByTitle("Welcome").close();
-        try {
-            SWTBotView view = ((SWTWorkbenchBot) bot).viewByTitle(target);
-            switch (action) {
-                case close:
-                    view.close();
-                    break;
-                case show:
-                    view.show();
-                    break;
-                case select:
-                default:
-                    logger.info(target);
-                    swtBot = view.bot();
-                    break;
-            }
-            return swtBot;
-        } catch (Exception e) {
-            logger.error("viewByTitle(\"" + target + "\")", e);
+        SWTBotView view = ((SWTWorkbenchBot) bot).viewByTitle(target);
+        switch (action) {
+            case close:
+                view.close();
+                break;
+            case show:
+                view.show();
+                break;
+            case select:
+            default:
+                logger.info(target);
+                swtBot = view.bot();
+                break;
         }
         return swtBot;
     }

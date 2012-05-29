@@ -37,43 +37,39 @@ public class TreeCommand extends AbstractCommand {
     @Override
     public SWTBot execute(SWTBot bot) {
         // bot.tree().expandNode("Java").select("Java Project");
-        try {
-            SWTBotTree treeBot = bot.tree();
-            SWTBotTreeItem expandNode = null;
-            SWTBotTreeItem selectedItem = null; // Returns the current node.
+        SWTBotTree treeBot = bot.tree();
+        SWTBotTreeItem expandNode = null;
+        SWTBotTreeItem selectedItem = null; // Returns the current node.
 
-            // [Tizen, Tizen Native Project]
-            if (targets.length > 1) {
-                String[] expand = new String[targets.length - 1];
-                System.arraycopy(targets, 0, expand, 0, expand.length);
-                expandNode = treeBot.expandNode(expand);
-            }
+        // [Tizen, Tizen Native Project]
+        if (targets.length > 1) {
+            String[] expand = new String[targets.length - 1];
+            System.arraycopy(targets, 0, expand, 0, expand.length);
+            expandNode = treeBot.expandNode(expand);
+        }
 
-            String target = targets[targets.length - 1];
+        String target = targets[targets.length - 1];
 
-            if (expandNode == null) {
-                selectedItem = treeBot.getTreeItem(target);
-            } else {
-                selectedItem = expandNode.getNode(target);
-            }
+        if (expandNode == null) {
+            selectedItem = treeBot.getTreeItem(target);
+        } else {
+            selectedItem = expandNode.getNode(target);
+        }
 
-            switch (action) {
-                case dblclick:
-                    selectedItem.doubleClick();
+        switch (action) {
+            case dblclick:
+                selectedItem.doubleClick();
+                break;
+            case select:
+                selectedItem.select();
+                break;
+            case dummy:
+                if (action.getArgument() == null)
                     break;
-                case select:
-                    selectedItem.select();
-                    break;
-                case dummy:
-                    if (action.getArgument() == null)
-                        break;
-                    ContextMenuHelper.clickContextMenu(treeBot.select(targets),
-                            ActionToken.splitWithTrim(action.getArgument(),
-                                    Constant.MENU_SEPARATOR));
-                    break;
-            }
-        } catch (Exception e) {
-            logger.error("tree", e);
+                ContextMenuHelper.clickContextMenu(treeBot.select(targets),
+                        ActionToken.splitWithTrim(action.getArgument(),
+                                Constant.MENU_SEPARATOR));
+                break;
         }
         return bot;
     }

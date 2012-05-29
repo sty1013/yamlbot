@@ -40,25 +40,20 @@ public class EditorCommand extends AbstractCommand {
 
         SWTBot swtBot = null;
         // bot.viewByTitle("empty.c").close();
-        try {
-            SWTBotEditor editor = ((SWTWorkbenchBot) bot)
-                    .editorByTitle("empty.c");
-            switch (action) {
-                case close:
-                    editor.close();
-                    break;
-                case show:
-                    editor.show();
-                    break;
-                case select:
-                    swtBot = editor.bot();
-                    break;
-                default:
-                    throw new Exception("Not support \"" + action + "\" action");
-            }
-            return swtBot;
-        } catch (Exception e) {
-            logger.error("viewByTitle(\"" + target + "\")", e);
+        SWTBotEditor editor = ((SWTWorkbenchBot) bot)
+                .editorByTitle("empty.c");
+        switch (action) {
+            case close:
+                editor.close();
+                break;
+            case show:
+                editor.show();
+                break;
+            case select:
+                swtBot = editor.bot();
+                break;
+            default:
+                throw new Exception("Not support \"" + action + "\" action");
         }
         return swtBot;
     }

@@ -103,23 +103,19 @@ public class AllTests {
     }
     
     @Test
-    public void executeTestMethods() throws NoSuchMethodException {
+    public void executeTestMethods() throws Exception {
         List<TestSuite> suites = TestSpy.getTestFixture().getSuites();
         for (TestSuite suite : suites) {
             List<TestCase> test_cases = suite.getTest_cases();
             for (TestCase tc : test_cases) {
-                if (tc != null)
-                    try {
-                        logger.info("=====================================================");
-                        logger.info("Execute test case");
-                        logger.info("test_no : " + tc.getTest_no());
-                        logger.info("description : " + tc.getDescription());
-                        logger.info("=====================================================");
-                        runCommand(tc.getStep());
-                    } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        logger.error(e);
-                    }
+                if (tc != null) {
+                    logger.info("=====================================================");
+                    logger.info("Execute test case");
+                    logger.info("test_no : " + tc.getTest_no());
+                    logger.info("description : " + tc.getDescription());
+                    logger.info("=====================================================");
+                    runCommand(tc.getStep());
+                }
             }
         }
     }

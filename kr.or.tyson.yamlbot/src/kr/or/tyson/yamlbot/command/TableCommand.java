@@ -35,14 +35,10 @@ public class TableCommand extends AbstractCommand {
 
     @Override
     public SWTBot execute(SWTBot bot) {
-        try {
-            switch (action) {
-                case select:
-                    bot.table().select(targets);
-                    break;
-            }
-        } catch (Exception e) {
-            logger.error("table", e);
+        switch (action) {
+            case select:
+                bot.table().select(targets);
+                break;
         }
         return bot;
     }

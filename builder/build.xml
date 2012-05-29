@@ -4,27 +4,44 @@
         <format property="today" pattern="yyyyMMddHHmmSS" />
     </tstamp>
 
-    <property name="eclipse-home" value="/home/tyson/eclipse" />                         <!-- set test eclipse path -->
-    <property name="yamlbot-home" value="/home/tyson/work/git/yamlbot" />                <!-- set yamlbot.git path -->
+    <property file="build-common.properties" />
+
     <property name="plugin-name" value="kr.or.tyson.yamlbot" />                          <!-- set test plugin name -->
-    <property name="test-preclassname" value="kr.or.tyson.yamlbot.TestSpy" />            <!-- class to load earlier than test class -->
-    <property name="test-classname" value="kr.or.tyson.yamlbot.AllTests" />              <!-- set test class name -->
-    <property name="playback-delay" value="30" />                                        <!-- slow down tests -->
+    <property name="plugin-path" value="${yamlbot.git}/${plugin-name}" />                          <!-- set test plugin path -->
     <property name="library-file" value="${eclipse-home}/plugins/org.eclipse.swtbot.eclipse.junit4.headless_2.0.5.20111003_1754-3676ac8-dev-e36/library.xml" />
-    
-	<target name="suite">
+    <property name="yamlbot.jar" value="${plugin-name}.jar" />
+    <property name="temp-workspace" value="workspace-${today}"/>
+
+    <target name="cleanup" >
+        <delete dir="${eclipse-home}/${temp-workspace}" quiet="true"/>
+        <delete dir="${eclipse-home}/${test.script}" quiet="true"/>
+        <delete dir="${eclipse-home}/plugins/${yamlbot.jar}" quiet="true"/>
+        <delete dir="${plugin-path}/${yamlbot.jar}" quiet="true"/>
+    </target>
+
+    <target name="setup" depends="cleanup">
+        <echo>Compile ${plugin-name}...</echo>
+        <bx-javac />
+        <echo>Make jar file...</echo>
+        <bx-jar />
+        
         <!-- copy required plugins -->
         <copy todir="${eclipse-home}/plugins">
-            <fileset dir="${yamlbot-home}/builder/plugins"/>
+            <fileset dir="${yamlbot.git}/builder/plugins"/>
         </copy>
         <copy todir="${eclipse-home}">
-            <fileset file="${yamlbot-home}/builder/test.script"/>
+            <fileset file="${test.script.path}/${test.script}" />
+            <fileset file="${plugin-path}/${yamlbot.jar}" />
         </copy>
+    </target>
+
+    <target name="suite" depends="setup">
         <!-- javassist must be loaded first -->
         <property name="jvmOption" value="-Xbootclasspath/p:${basedir}/lib/javassist.jar"></property>
         <echo>Applying jvmOption... ${jvmOption}</echo>
-        <property name="temp-workspace" value="workspace-${today}"/>
-        <delete dir="${temp-workspace}" quiet="true"/>
+        <property name="test-preclassname" value="${plugin-name}.TestSpy" />            <!-- class to load earlier than test class -->
+        <property name="test-classname" value="${plugin-name}.AllTests" />              <!-- set test class name -->
+        <property name="playback-delay" value="30" />                                        <!-- slow down tests -->
         <ant target="swtbot-test" antfile="${library-file}" dir="${eclipse-home}">
             <property name="data-dir" value="${temp-workspace}"/>
             <property name="plugin-name" value="${plugin-name}"/>
@@ -37,7 +54,44 @@
             <property name="vmargs" value="-Xms128M -XX:MaxPermSize=512m -Xmx512M ${jvmOption}"/>
         </ant>
     </target>
-    <target name="cleanup" />
-    <target name="run" depends="suite,cleanup">
-    </target>
+
+    <target name="run" depends="suite, cleanup" />
+
+    <macrodef name="bx-javac">
+        <attribute name="src" default="${plugin-path}/src" />
+    	<attribute name="dest" default="${plugin-path}/bin" />
+        <attribute name="encoding" default="${encoding.java}" />
+        <attribute name="version" default="${javac.source}" />
+        <attribute name="debug" default="${javac.debug}" />
+        <attribute name="debuglevel" default="${javac.debuglevel}" />
+        <sequential>
+            <javac
+                srcdir="@{src}"
+            	destdir="@{dest}"
+                encoding="@{encoding}"
+                source="@{version}"
+                target="@{version}"
+                debug="@{debug}"
+                debuglevel="@{debuglevel}"
+            	includeantruntime="false"
+            >
+            </javac>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="bx-jar">
+        <attribute name="manifest" default="${plugin-path}/META-INF/MANIFEST.MF" />
+        <attribute name="dest" default="${plugin-path}/${yamlbot.jar}" />
+        <attribute name="base" default="${plugin-path}/bin" />
+        <attribute name="version" default="${javac.target}" />
+        <sequential>
+            <jar
+                basedir="@{base}"
+                destfile="@{dest}"
+                manifest="@{manifest}"
+            />
+        </sequential>
+    </macrodef>
+
 </project>
+

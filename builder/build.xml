@@ -21,17 +21,17 @@
     </target>
 
     <target name="setup" depends="cleanup">
-	<mkdir dir="${plugin-path}/bin"/>
+    	<mkdir dir="${plugin-path}/bin"/>
+        <!-- copy required plugins -->
+        <copy todir="${eclipse-home}/plugins">
+            <fileset dir="${yamlbot.git}/builder/plugins"/>
+        </copy>
 
         <echo>Compile ${plugin-name}...</echo>
         <bx-javac />
         <echo>Make jar file...</echo>
         <bx-jar />
         
-        <!-- copy required plugins -->
-        <copy todir="${eclipse-home}/plugins">
-            <fileset dir="${yamlbot.git}/builder/plugins"/>
-        </copy>
         <copy todir="${eclipse-home}">
             <fileset file="${test.script.path}/${test.script}" />
             <fileset file="${plugin-path}/${yamlbot.jar}" />
@@ -82,6 +82,7 @@
                 <classpath>
                     <fileset dir="${eclipse-home}/plugins" />
                     <fileset dir="${yamlbot.git}/builder/lib" />
+                    <fileset dir="${yamlbot.git}/${plugin-name}/lib" />
 	            </classpath>
             </javac>
         </sequential>

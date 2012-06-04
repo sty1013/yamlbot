@@ -64,6 +64,13 @@ public class CommandFactory {
                 int value = Integer.parseInt(token.getTargets()[0]);
                 command = new SleepCommand(value, action);
                 break;
+            case lable:
+                command = new LabelCommand(token.getTargets()[0]);
+                break;
+            case capture:
+                command = new CaptureCommand(token.getTargets()[0]);
+                break;
+
         }
 
         return command;

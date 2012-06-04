@@ -14,7 +14,7 @@
 package kr.or.tyson.yamlbot;
 
 public enum Artifact {
-    button, view, menu, table, text, tree, shell, console, sleep;
+    button, view, menu, table, text, tree, shell, lable, console, sleep, capture;
 
     public enum Action {
         close, show, select, click, dblclick, dummy; // action for just getting

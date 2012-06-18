@@ -29,11 +29,17 @@
 
         <echo>Compile ${plugin-name}...</echo>
         <bx-javac />
+        <mkdir dir="${plugin-path}/bin/lib"/>
+        <copy todir="${plugin-path}/bin/lib">
+             <fileset dir="${yamlbot.git}/builder/lib"/>
+        </copy>
         <echo>Make jar file...</echo>
         <bx-jar />
         
         <copy todir="${eclipse-home}">
             <fileset file="${test.script.path}/${test.script}" />
+        </copy>
+        <copy todir="${eclipse-home}/plugins">
             <fileset file="${plugin-path}/${yamlbot.jar}" />
         </copy>
 
